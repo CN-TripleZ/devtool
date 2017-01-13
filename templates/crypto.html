@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在线加解密工具</title>
+    <style type="text/css">
+        .header {
+            text-align: center;
+            background-color: #27AE60;
+            color: #fff;
+        }
+
+        div.sel {
+            padding: 0px;
+        }
+
+        .list-inline {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .center {
+            width: auto;
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12"><h1>在线加解密工具</h1>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="sel well well-md text-center">
+    <div class="container">
+        <ul class="list-inline">
+            <li><a href="#crypto" data-toggle="tab" class="btn btn-sm btn-default">加密/解密</a></li>
+            <li><a href="#hash" data-toggle="tab" class="btn btn-sm btn-default">散列/哈希</a></li>
+            <li><a href="#base64" data-toggle="tab" class="btn btn-sm btn-default">Base64</a></li>
+            <li><a href="#imgbase64" data-toggle="tab" class="btn btn-sm btn-default">图片转Base64</a></li>
+        </ul>
+    </div>
+</div>
+<div class="tab-content">
+    <div class="container center text-center tab-pane fade in active" id="crypto">
+        <form class="form-horizontal" role="form">
+            <div class="row">
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" name="AES" id="AES" value="AES"> AES
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="DES" id="DES" value="DES"> DES
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="RC4" id="RC4" value="RC4"> RC4
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">密钥</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" type="text" name=""/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">明文</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="6"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">密文</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="6"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10 text-left">
+                        <button type="button" class="btn btn-success">加密</button>
+                        <button type="button" class="btn btn-warning">解密</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="tab-pane fade" id="hash">
+
+    </div>
+    <div class="tab-pane fade" id="base64">
+
+    </div>
+    <div class="tab-pane fade" id="imgbase64">
+
+    </div>
+</div>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
