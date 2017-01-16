@@ -59,40 +59,49 @@
         <form class="form-horizontal" role="form">
             <div class="row">
                 <div class="form-group">
-                    <label class="radio-inline">
-                        <input type="radio" name="AES" id="AES" value="AES"> AES
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="DES" id="DES" value="DES"> DES
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="RC4" id="RC4" value="RC4"> RC4
-                    </label>
+                    <label for="inputPassword3" class="col-sm-2 control-label">算法</label>
+                    <div class="col-sm-4 text-left">
+                        <label class="radio-inline">
+                          <input type="radio" name="opt" id="AES" value="AES" checked="checked"> AES
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="opt" id="DES" value="DES"> DES
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="opt" id="RC4" value="RC4"> RC4
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="opt" id="Rabbit" value="Rabbit"> Rabbit
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="opt" id="TripleDes" value="TripleDes"> TripleDes
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group">
                     <label for="inputPassword3" class="col-sm-2 control-label">密钥</label>
-                    <div class="col-sm-4">
-                        <input class="form-control" type="text" name=""/>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" name="key"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">明文</label>
+                    <label for="inputPassword3" class="col-sm-2 control-label">源文</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" rows="6"></textarea>
+                        <textarea class="form-control" rows="6" name="src"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">密文</label>
+                    <label for="inputPassword3" class="col-sm-2 control-label">结果</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" rows="6"></textarea>
+                        <textarea class="form-control" rows="6" name="result"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10 text-left">
-                        <button type="button" class="btn btn-success">加密</button>
-                        <button type="button" class="btn btn-warning">解密</button>
+                        <button type="button" class="btn btn-success btn-encode">加密</button>
+                        <button type="button" class="btn btn-warning btn-decode">解密</button>
                     </div>
                 </div>
             </div>
@@ -114,9 +123,72 @@
 <link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.min.css">
 
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/require.js"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script src="/static/js/crypto-js/core-min.js"></script>
+<script src="/static/js/crypto-js/aes.js"></script>
+<script src="/static/js/crypto-js/rc4.js.js"></script>
+<script src="/static/js/crypto-js/rabbit.js.js"></script>
+<script src="/static/js/crypto-js/tripledes.js"></script>
+<script type="text/javascript">
+    $("#crypto").find(".btn-encode").on("click", function (e) {
+        var opt = $("#crypto").find("input[name=opt]:checked").val();
+        var key = $("#crypto").find("input[name=key]").val();
+        var src = $("#crypto").find("textarea[name=src]").val();
+        if (!key) {
+            alert("请输入密钥");
+            return;
+        }
+        if (!src) {
+            alert("请输入源文");
+            return;
+        }
+        if (opt == "AES") {
+            $("#crypto").find("textarea[name=result]").val(CryptoJS.AES.encrypt(src, key).toString());
+        }
+        else if (opt == "DES") {
+            $("#crypto").find("textarea[name=result]").val(CryptoJS.DES.encrypt(src, key).toString());
+        }
+         else if (opt == "RC4") {
+            $("#crypto").find("textarea[name=result]").val(CryptoJS.RC4.encrypt(src, key).toString());
+        }
+         else if (opt == "Rabbit") {
+            $("#crypto").find("textarea[name=result]").val(CryptoJS.Rabbit.encrypt(src, key).toString());
+        }
+         else if (opt == "TripleDes") {
+            $("#crypto").find("textarea[name=result]").val(CryptoJS.TripleDES.encrypt(src, key).toString());
+        }
+    });
+    $("#crypto").find(".btn-decode").on("click", function (e) {
+        var opt = $("#crypto").find("input[name=opt]:checked").val();
+        var key = $("#crypto").find("input[name=key]").val();
+        var src = $("#crypto").find("textarea[name=src]").val();
+        if (!key) {
+            alert("请输入密钥");
+            return;
+        }
+        if (!src) {
+            alert("请输入源文");
+            return;
+        }
+        if (opt == "AES") {
+            $("#crypto").find("textarea[name=result]").val(CryptoJS.AES.decrypt(src, key).toString(CryptoJS.enc.Utf8));
+        }
+        else if (opt == "DES") {
+            $("#crypto").find("textarea[name=result]").val(CryptoJS.DES.decrypt(src, key).toString(CryptoJS.enc.Utf8));
+        }
+        else if (opt == "RC4") {
+            $("#crypto").find("textarea[name=result]").val(CryptoJS.DES.RC4(src, key).toString(CryptoJS.enc.Utf8));
+        }
+        else if (opt == "Rabbit") {
+            $("#crypto").find("textarea[name=result]").val(CryptoJS.DES.Rabbit(src, key).toString(CryptoJS.enc.Utf8));
+        }
+        else if (opt == "TripleDes") {
+            $("#crypto").find("textarea[name=result]").val(CryptoJS.DES.TripleDES(src, key).toString(CryptoJS.enc.Utf8));
+        }
+    });
+</script>
 </body>
 </html>
