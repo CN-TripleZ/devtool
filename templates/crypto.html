@@ -174,13 +174,13 @@
             $("#crypto").find("textarea[name=result]").val(CryptoJS.DES.decrypt(src, key).toString(CryptoJS.enc.Utf8));
         }
         else if (opt == "RC4") {
-            $("#crypto").find("textarea[name=result]").val(CryptoJS.DES.RC4(src, key).toString(CryptoJS.enc.Utf8));
+            $("#crypto").find("textarea[name=result]").val(CryptoJS.RC4.decrypt(src, key).toString(CryptoJS.enc.Utf8));
         }
         else if (opt == "Rabbit") {
-            $("#crypto").find("textarea[name=result]").val(CryptoJS.DES.Rabbit(src, key).toString(CryptoJS.enc.Utf8));
+            $("#crypto").find("textarea[name=result]").val(CryptoJS.Rabbit.decrypt(src, key).toString(CryptoJS.enc.Utf8));
         }
         else if (opt == "TripleDes") {
-            $("#crypto").find("textarea[name=result]").val(CryptoJS.DES.TripleDES(src, key).toString(CryptoJS.enc.Utf8));
+            $("#crypto").find("textarea[name=result]").val(CryptoJS.TripleDES.decrypt(src, key).toString(CryptoJS.enc.Utf8));
         }
     });
 </script>
